@@ -1,14 +1,35 @@
 {% load static %}
-
+<head>
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+</head>
 
-<h1>Databases Project</h1>
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+<body>
+  <h1>Databases Project</h1>
+  <h3>Here to make your travel easier. </h3>
+  <img src="http://www.joeanhalt.com/wp-content/uploads/2014/09/airbnb-logo.jpg" alt="Airbnb.com" width="244" height="142">
+  <img src="https://getkya.com/wp-content/uploads/2015/12/yelp-logo-vector.jpg" alt="Airbnb.com" width="250" height="122">
+
+  <p style="color:#6a5acd"> Using the world's data to better inform your travel desires. </p>
+  <hr>
+  {% if latest_question_list %}
+      <ul>
+      {% for question in latest_question_list %}
+          <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>No polls are available.</p>
+  {% endif %}
+</body>
+
+<div class="city_label">
+<p>Pick your paradise city: </p>
+</div>
+<div class="dropdown">
+  <select name="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+</div>
