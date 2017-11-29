@@ -18,3 +18,15 @@ p {
 
 .city_label {display:inline-block;margin-right:10px;}
 .dropdown {display:inline-block;}
+
+.posee {
+  display:inline-block;margin-right:10px;}
+
+.budget {
+  display:inline-block;margin-right:10px;}
+
+.rating_label {
+  display:inline-block;margin-right:10px;}
+
+.rating_dropdown {
+  display:inline-block;margin-right:10px;}
