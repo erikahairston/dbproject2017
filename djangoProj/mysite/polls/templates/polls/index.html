@@ -11,10 +11,11 @@
 
   <p style="color:#6a5acd"> Using the world's data to better inform your travel desires. </p>
   <hr>
-  {% if latest_question_list %}
+  <p> Our best listings in Boston: </p>
+  {% if latest_airbnb_list %}
       <ul>
-      {% for question in latest_question_list %}
-          <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+      {% for airbnb in latest_airbnb_list %}
+          <li>{{ airbnb.name }}</li>
       {% endfor %}
       </ul>
   {% else %}
