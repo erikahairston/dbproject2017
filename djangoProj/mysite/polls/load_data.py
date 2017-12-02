@@ -1,5 +1,5 @@
 #next time just change the .csv file below and put in the views.py vote function
-csv_filepathname="/Users/Erika/Documents/2017-2018 Senior/Databases/dbproject2017/djangoProj/mysite/polls/tomslee_airbnb_boston_1429_2017-07-10.csv"
+csv_filepathname="/Users/Erika/Documents/2017-2018 Senior/Databases/dbproject2017/djangoProj/mysite/polls/Airbnb_data/tomslee_airbnb_barcelona_1477_2017-07-23"
 dataReader = csv.reader(open(csv_filepathname, errors= 'ignore'), delimiter=',', quotechar='"', )
 for row in dataReader:
     print (row)
