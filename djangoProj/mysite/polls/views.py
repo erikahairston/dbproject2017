@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.views import generic
 
 
-from .models import Question, Choice, Airbnb_listing
+from .models import Question, Choice, Airbnb_listing, business, attribute, category
 import csv
 
 class IndexView(generic.ListView):

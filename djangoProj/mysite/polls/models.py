@@ -88,12 +88,12 @@ class user(models.Model):
         return self.name
 
 class attribute(models.Model):
-    business_id = models.ForeignKey(business, on_delete=models.DO_NOTHING)
+    business_id = models.CharField(max_length=22) #models.ForeignKey(business, on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=255, null=True, default=None)
     value = models.TextField()
 
 class category(models.Model):
-    business_id = models.ForeignKey(business, on_delete=models.DO_NOTHING)
+    business_id = models.CharField(max_length=22) #models.ForeignKey(business, on_delete=models.DO_NOTHING)
     category = models.CharField(max_length=255, null=True, default=None)
 
 class checkin(models.Model):
@@ -118,7 +118,7 @@ class photo(models.Model):
     business_id = models.ForeignKey(business, on_delete=models.DO_NOTHING)
     caption = models.CharField(max_length=255, null=True, default=None)
     label = models.CharField(max_length=255, null=True, default=None)
-    
+
 class review(models.Model):
     id = models.CharField(max_length=22, primary_key=True)
     stars = models.IntegerField(null=True, default=None)

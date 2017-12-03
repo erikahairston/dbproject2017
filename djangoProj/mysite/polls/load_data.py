@@ -1,5 +1,40 @@
+#loading in yelp data
+csv_filepathname="/Users/Erika/Downloads/uttn/yelp_businesses.csv"
+dataReader = csv.reader(open(csv_filepathname, errors= 'ignore'), delimiter=',', quotechar='"', )
+for row in dataReader:
+    print (row)
+    if row[0] != 'id':
+        # Ignore the header row, import everything else
+        biz = business()
+        biz.id = row[0]
+        biz.name = row[1]
+        biz.neighborhood = row[2]
+        biz.address = row[3]
+        biz.city = row[4]
+        biz.state = row[5]
+        biz.postal_code = row[6]
+        biz.latitude = row[7]
+        biz.longitude = row[8]
+        biz.stars = row[9]
+        biz.review_count = row[10]
+        biz.is_open = row[11]
+        biz.save()
+
+csv_filepathname="/Users/Erika/Downloads/uttn/yelp_categories.csv"
+dataReader = csv.reader(open(csv_filepathname, errors= 'ignore'), delimiter=',', quotechar='"', )
+for row in dataReader:
+    print (row)
+    #if row[0] != 'id':
+        # Ignore the header row, import everything else
+    cat = category()
+    cat.business_id = row[0]
+    cat.category = row[1]
+    cat.save()
+
+
+
 #next time just change the .csv file below and put in the views.py vote function
-csv_filepathname="/Users/Erika/Documents/2017-2018 Senior/Databases/dbproject2017/djangoProj/mysite/polls/Airbnb_data/tomslee_airbnb_barcelona_1477_2017-07-23"
+csv_filepathname="/Users/Erika/Documents/2017-2018 Senior/Databases/dbproject2017/djangoProj/mysite/polls/Airbnb_data/tomslee_airbnb_barcelona_1477_2017-07-23.csv"
 dataReader = csv.reader(open(csv_filepathname, errors= 'ignore'), delimiter=',', quotechar='"', )
 for row in dataReader:
     print (row)
