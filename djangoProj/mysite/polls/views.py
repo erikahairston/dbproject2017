@@ -18,6 +18,22 @@ class IndexView(generic.ListView):
         """Return the last five published questions."""
         return Airbnb_listing.objects.order_by('price')[:5]
 
+def yours(request):
+    city = request.POST.get("Cities", "")
+    Price_Range = request.POST.get("Price_Range", "")
+    num_adults = request.POST.get("Adults", "")
+    num_kids = request.POST.get("Kids", "")
+    rating = request.POST.get("star", "")
+    context = {'city': city,
+                'Price_Range': Price_Range,
+                'num_adults': num_adults,
+                'num_kids': num_kids,
+                'rating': rating
+            }
+    return render(request, 'polls/yours.html', context)
+
+
+
 
 
 class DetailView(generic.DetailView):

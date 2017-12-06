@@ -31,7 +31,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <h2><i class="fa fa-bed w3-margin-right"></i>Anywhere. Anytime. Made For You</h2>
     </div>
     <div class="w3-container w3-white w3-padding-16">
-      <form action="/action_page.php" target="_blank">
+      <form action="{% url 'polls:yours' %}" method="post">
+        {% csrf_token %}
         <div class="w3-row-padding" style="margin:0 -16px;">
           <div class="city_label w3-row-padding">
             <label>Select Your Paradise City: </label>
@@ -40,10 +41,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
             <select name="Cities">
               <!-- for city in yelp_city_list  -->
               <!-- yelpBiz.city_name -->
-              <option value="volvo">New York City</option>
-              <option value="saab">San Francisco</option>
-              <option value="fiat">Chicago</option>
-              <option value="audi">New Haven</option>
+              <option value="New York City">New York City</option>
+              <option value="San Francisco">San Francisco</option>
+              <option value="Chicago">Chicago</option>
+              <option value="Houston">Houston</option>
               <!--endfor  -->
             </select>
           </div>
@@ -53,13 +54,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           <div class="w3-half w3-margin-bottom">
             <label><i class="fa fa-usd"></i> Avgerage Price/Night</label>
             <div class="dropdown w3-input w3-border">
-              <select name="Price Ranges">
+              <select name="Price_Range">
                 <!-- for city in yelp_city_list  -->
                 <!-- yelpBiz.city_name -->
-                <option value="volvo">$0 - $50</option>
-                <option value="saab">$51 - $80</option>
-                <option value="fiat">$81 - $100</option>
-                <option value="audi"> $100 Up</option>
+                <option value=1>$0 - $50</option>
+                <option value=2>$51 - $80</option>
+                <option value=3>$81 - $100</option>
+                <option value=4> $100 Up</option>
                 <!--endfor  -->
               </select>
             </div>
@@ -67,21 +68,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           <div class="w3-half">
             <label><i class="fa fa-star"></i> Minimum Rating</label>
             <div class="txt-center">
-              <form>
-                    <div class="rating w3-border" >
-                        <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
-                        <label for="star5" >☆</label>
-                        <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
-                        <label for="star4" >☆</label>
-                        <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
-                        <label for="star3" >☆</label>
-                        <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
-                        <label for="star2" >☆</label>
-                        <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
-                        <label for="star1" >☆</label>
-                        <div class="clear"></div>
-                    </div>
-                </form>
+                <div class="rating w3-border" >
+                    <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                    <label for="star5" >☆</label>
+                    <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                    <label for="star4" >☆</label>
+                    <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                    <label for="star3" >☆</label>
+                    <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+                    <label for="star2" >☆</label>
+                    <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+                    <label for="star1" >☆</label>
+                    <div class="clear"></div>
+                </div>
             </div>
 
           </div>
@@ -96,7 +95,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           <input class="w3-input w3-border" type="number" value="0" name="Kids" min="0" max="6">
           </div>
         </div>
-        <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-search w3-margin-right"></i> Search availability</button>
+        <button class="w3-button w3-dark-grey" type="submit" value="Search"><i class="fa fa-search w3-margin-right"></i> Search availability</button>
       </form>
     </div>
   </div>
@@ -191,28 +190,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   </div>
 
   <div class="w3-container">
-    <h3>Our Hotels</h3>
-    <h6>You can find our hotels anywhere in the world:</h6>
+    <h3>Our Cities</h3>
+    <h6>You can find the listed homes and businesses anywhere in the states:</h6>
   </div>
 
   <div class="w3-row-padding w3-padding-16 w3-text-white w3-large">
     <div class="w3-half w3-margin-bottom">
       <div class="w3-display-container">
-        <img src="/w3images/cinqueterre.jpg" alt="Cinque Terre" style="width:100%">
-        <span class="w3-display-bottomleft w3-padding">Cinque Terre</span>
+        <img src="http://innovationintelligence.com/wp-content/uploads/2014/09/atcx-houston_featured.jpg" alt="Houston" style="width:100%">
+        <span class="w3-display-bottomleft w3-padding">Houston</span>
       </div>
     </div>
     <div class="w3-half">
       <div class="w3-row-padding" style="margin:0 -16px">
         <div class="w3-half w3-margin-bottom">
           <div class="w3-display-container">
-            <img src="/w3images/newyork2.jpg" alt="New York" style="width:100%">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/0e/9a/e3/1d/freedom-tower.jpg" alt="New York" style="width:100%">
             <span class="w3-display-bottomleft w3-padding">New York</span>
           </div>
         </div>
         <div class="w3-half w3-margin-bottom">
           <div class="w3-display-container">
-            <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%">
+            <img src="http://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1444253482/DG2015-san-francisco.jpg?itok=MdRJm2Zo" alt="San Francisco" style="width:100%">
             <span class="w3-display-bottomleft w3-padding">San Francisco</span>
           </div>
         </div>
@@ -220,14 +219,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <div class="w3-row-padding" style="margin:0 -16px">
         <div class="w3-half w3-margin-bottom">
           <div class="w3-display-container">
-            <img src="/w3images/pisa.jpg" alt="Pisa" style="width:100%">
-            <span class="w3-display-bottomleft w3-padding">Pisa</span>
+            <img src="https://cache-graphicslib.viator.com/graphicslib/thumbs360x240/10065/SITours/privately-customized-tour-of-los-angeles-in-los-angeles-227795.jpg" alt="Los Angeles" style="width:100%">
+            <span class="w3-display-bottomleft w3-padding">Los Angeles</span>
           </div>
         </div>
         <div class="w3-half w3-margin-bottom">
           <div class="w3-display-container">
-            <img src="/w3images/paris.jpg" alt="Paris" style="width:100%">
-            <span class="w3-display-bottomleft w3-padding">Paris</span>
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/07/72/27/a3/chicago.jpg" alt="Chicago" style="width:100%">
+            <span class="w3-display-bottomleft w3-padding">Chicago</span>
           </div>
         </div>
       </div>
