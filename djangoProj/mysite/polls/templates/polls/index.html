@@ -39,13 +39,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           </div>
           <div class="dropdown">
             <select name="Cities">
-              <!-- for city in yelp_city_list  -->
-              <!-- yelpBiz.city_name -->
-              <option value="New York City">New York City</option>
-              <option value="San Francisco">San Francisco</option>
-              <option value="Chicago">Chicago</option>
-              <option value="Houston">Houston</option>
-              <!--endfor  -->
+            {% for city1 in cities %}
+              <option value="{{ city1.city}}">{{ city1.city}}</option>
+            {% endfor %}
             </select>
           </div>
           <br>
@@ -294,6 +290,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <p>No polls are available.</p>
   {% endif %}
 </body>
+
+
 
 <script>
 function updatePriceLabels() {

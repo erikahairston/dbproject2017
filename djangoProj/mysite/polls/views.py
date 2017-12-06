@@ -10,13 +10,18 @@ from django.views import generic
 from .models import Question, Choice, Airbnb_listing, business, attribute, category
 import csv
 
-class IndexView(generic.ListView):
+def index(request):
     template_name = 'polls/index.html'
-    context_object_name = 'latest_airbnb_list'
+    latest_airbnb_list = Airbnb_listing.objects.order_by('price')[:5]
+    #context_object_name = 'latest_airbnb_list'
+    cities = Airbnb_listing.objects.order_by().values('city').distinct()
+    context = {'latest_airbnb_list': latest_airbnb_list,'cities': cities}
+    return render(request, template_name, context)
 
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Airbnb_listing.objects.order_by('price')[:5]
+
+    # def get_queryset(self):
+    #     """Return the last five published questions."""
+    #     return Airbnb_listing.objects.order_by('price')[:5]
 
 def yours(request):
     city = request.POST.get("Cities", "")
