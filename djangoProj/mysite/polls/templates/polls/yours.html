@@ -1,12 +1,223 @@
 <html>
+  <style>
+  /* Customize the label (the container) */
+
+table, th, td {
+      /*border: 1px solid black;*/
+}
+
+  td{
+    vertical-align: top;
+    height: 170px;
+  }
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  .seemore:hover {
+    color: pink;
+    background-color: #2196F3;
+
+  }
+
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid blue;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  #myDIV {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    background-color: lightblue;
+    margin-top: 20px;
+}
+
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+
+  var limit = 3;
+  $('input.single-checkbox').on('change', function(evt) {
+     if($(this).siblings(':checked').length >= limit) {
+         this.checked = false;
+     }
+  });
+
+  </script>
 <body>
 
+<h1> Previous form responses: </h1>
   <p>Adults: {{ num_adults }}</p>
   <p>Kids: {{ num_kids}} <p>
   <p>Price_Range: {{ Price_Range}} <p>
   <p>City: {{ city}} <p>
   <p>Rating: {{ rating}} <p>
 
+
+<h2> Let's Get to Know Each other a bit better </h2>
+    <form action="" >
+        I'm TravelBud, What's your name?<br>
+      <input type="text" name="firstname" value="Mickey">
+      <br>
+      Nice to meet you. I like long walks on the beach and ice cream. What do you like? <br>
+      <input type="text" name="lastname" value="Mouse">
+      <br><br>
+      <p> Select your top 2 favorite Cuisines: </p>
+      <table style="width:70%">
+        <tr>
+          <td>
+            <label class="container">
+              <input class = "Cuisines" input= "Burgers" type="checkbox" checked="checked">
+              <span class="checkmark"> <img src="https://assets.bonappetit.com/photos/57acae2d1b33404414975121/16:9/w_1200,c_limit/ultimate-veggie-burger.jpg"  height="120" width="200">Burgers</span>
+            </label>
+          </td>
+
+          <td>
+            <label class="container">
+              <input class = "Cuisines" input= "Chinese" type="checkbox">
+              <span class="checkmark"><img src="http://del.h-cdn.co/assets/17/24/768x512/gallery-1497458825-delish-shrimp-fried-rice-1-1024.jpg"height="120" width="200">Chinese</span>
+            </label>
+          </td>
+
+          <td>
+            <label class="container">
+              <input class ="Cuisines" input= "Pizza" type="checkbox">
+              <span class="checkmark"> <img src="https://pbs.twimg.com/profile_images/1362465529/Pizza-Napolitana2_2_400x400.jpg" height="120" width="200">Pizza</span>
+            </label>
+          </td>
+
+          <td>
+            <label class="container">
+              <input class = "Cuisines" input= "Fast Food" type="checkbox">
+              <span class="checkmark"><img src="http://www.pizzaandgyro.com/wp-content/uploads/2013/11/Chicken-tenders-W-Fries.jpg"  height="120" width="200">Fast Food</span>
+            </label>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <label class="container">
+              <input class = "Cuisines" input= "Sushi Bars" type="checkbox">
+              <span class="checkmark"> <img src="https://halfoff.adspayusa.com/wp-content/uploads/2017/04/sushi_and_sashimi_for_two.0.jpg"  height="120" width="200">Sushi</span>
+            </label>
+          </td>
+
+          <td>
+            <label class="container">
+              <input class = "Cuisines" input= "Mexican" type="checkbox">
+              <span class="checkmark"><img src="https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg"height="120" width="200">Mexican</span>
+            </label>
+          </td>
+
+          <td>
+            <label class="container">
+              <input class = "Cuisines" input= "Italian" type="checkbox">
+              <span class="checkmark"> <img src="http://i.ndtvimg.com/i/2016-07/pasta_625x350_51467797057.jpg" height="120" width="200">Italian</span>
+            </label>
+          </td>
+
+          <td>
+            <label class="container">
+              <input class="Cuisines" input= "Salad" type="checkbox">
+              <span class="checkmark"><img src="http://www.simplyrecipes.com/wp-content/uploads/2016/07/2016-08-12-BLT-Salad-3-600x400.jpg"  height="120" width="200">Salad</span>
+            </label>
+          </td>
+        </tr>
+      </table>
+      <a onclick="myFunction()" class="seemore"> Don't see what you like? Click Me</a>
+      <div id="myDIV">
+        This is my DIV element.
+        will put the rest of the food choices in little checkboxes here
+      </div>
+
+
+      <br>
+      Next is entertainment and arts selections.
+      <br>
+
+      <input type="submit" value="Submit">
+
+    </form>
+
+
+
+
+<script type="text/javascript">
+
+$('.Cuisines').on('change', function() {
+   if($('.Cuisines:checked').length > 2) {
+       this.checked = false;
+   }
+});
+
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+</script>
+
+    <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
 
 
 </body>
