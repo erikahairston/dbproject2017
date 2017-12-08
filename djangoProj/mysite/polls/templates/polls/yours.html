@@ -9,151 +9,48 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
-<html>
-  <script>
-
-  var limit = 3;
-  $('input.single-checkbox').on('change', function(evt) {
-     if($(this).siblings(':checked').length >= limit) {
-         this.checked = false;
-     }
-  });
-
-  </script>
 <body>
-
-<h1> Previous form responses: </h1>
-  <p>Adults: {{ num_adults }}</p>
-  <p>Kids: {{ num_kids}} <p>
-  <p>Price_Range: {{ Price_Range}} <p>
-  <p>City: {{ city}} <p>
-  <p>Rating: {{ rating}} <p>
-
     <!-- Page content -->
     <div class="w3-content" style="max-width:1532px;">
 
-      <div class="w3-container w3-margin-top" id="rooms">
-        <h3>Our Motto</h3>
+      <div class="w3-container w3-margin-top">
+        <h2>Let's Get to Know Each other a bit better</h2>
         <p>Using the world's data to better inform your travel desires.</p>
       </div>
 
-      <div class="w3-row-padding">
-        <div class="w3-col m3">
-          <label><i class="fa fa-calendar-o"></i> Check In</label>
-          <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY">
-        </div>
-        <div class="w3-col m3">
-          <label><i class="fa fa-calendar-o"></i> Check Out</label>
-          <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY">
-        </div>
-        <div class="w3-col m2">
-          <label><i class="fa fa-male"></i> Adults</label>
-          <input class="w3-input w3-border" type="number" placeholder="1">
-        </div>
-        <div class="w3-col m2">
-          <label><i class="fa fa-child"></i> Kids</label>
-          <input class="w3-input w3-border" type="number" placeholder="0">
-        </div>
-        <div class="w3-col m2">
-          <label><i class="fa fa-search"></i> Search</label>
-          <button class="w3-button w3-block w3-black">Search</button>
-        </div>
-      </div>
-
-      <div class="w3-row-padding w3-padding-16">
-        <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/room_single.jpg" alt="Norway" style="width:100%">
-          <div class="w3-container w3-white">
-            <h3>Single Room</h3>
-            <h6 class="w3-opacity">From $99</h6>
-            <p>Single bed</p>
-            <p>15m<sup>2</sup></p>
-            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
-            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
-          </div>
-        </div>
-        <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/room_double.jpg" alt="Norway" style="width:100%">
-          <div class="w3-container w3-white">
-            <h3>Double Room</h3>
-            <h6 class="w3-opacity">From $149</h6>
-            <p>Queen-size bed</p>
-            <p>25m<sup>2</sup></p>
-            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i></p>
-            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
-          </div>
-        </div>
-        <div class="w3-third w3-margin-bottom">
-          <img src="/w3images/room_deluxe.jpg" alt="Norway" style="width:100%">
-          <div class="w3-container w3-white">
-            <h3>Deluxe Room</h3>
-            <h6 class="w3-opacity">From $199</h6>
-            <p>King-size bed</p>
-            <p>40m<sup>2</sup></p>
-            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
-            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="w3-row-padding" id="about">
-        <div class="w3-col l4 m7">
-          <h3>About</h3>
-          <h6>Our hotel is one of a kind. It is truely amazing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h6>
-        <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
-        </div>
-        <div class="w3-col l8 m5">
-          <div id="googleMap" style="width:100%;height:400px;" class="w3-grayscale"></div>
-        </div>
-      </div>
-
-      <div class="w3-row w3-large w3-center" style="margin:32px 0">
-        <div class="w3-third"><i class="fa fa-map-marker w3-text-red"></i> 423 Some adr, Chicago, US</div>
-        <div class="w3-third"><i class="fa fa-phone w3-text-red"></i> Phone: +00 151515</div>
-        <div class="w3-third"><i class="fa fa-envelope w3-text-red"></i> Email: mail@mail.com</div>
-      </div>
-
-      <div class="w3-panel w3-indigo w3-leftbar w3-padding-32">
-        <h6><i class="fa fa-info w3-deep-orange w3-padding w3-margin-right"></i> On demand, we can offer playstation, babycall, children care, dog equipment, etc.</h6>
-      </div>
-
-
-
-<h2> Let's Get to Know Each other a bit better </h2>
-    <form action="" >
-        I'm TravelBud, What's your name?<br>
-      <input type="text" name="firstname" value="Mickey">
+    <form action="/polls/yours/done/" method="POST">
+      {% csrf_token %}
+      <h3>  I'm TravelBud, What's your name?</h3>
+      <input class="w3-input w3-border" type="text" name="firstname" value="Mickey">
       <br>
       Nice to meet you. I like long walks on the beach and ice cream. What do you like? <br>
-      <input type="text" name="lastname" value="Mouse">
-      <br><br>
-      <p> Select your top 2 favorite Cuisines: </p>
+      <h3> Select your top 2 favorite Cuisines: </h3>
       <table style="width:70%">
         <tr>
           <td>
             <label class="container">
-              <input class = "Cuisines" input= "Burgers" type="checkbox" checked="checked">
+              <input name ="Cuisines" class = "Cuisines" input= "Burgers" type="checkbox" checked="checked" value="Burgers">
               <span class="checkmark"> <img src="https://assets.bonappetit.com/photos/57acae2d1b33404414975121/16:9/w_1200,c_limit/ultimate-veggie-burger.jpg"  height="120" width="200">Burgers</span>
             </label>
           </td>
 
           <td>
             <label class="container">
-              <input class = "Cuisines" input= "Chinese" type="checkbox">
+              <input name ="Cuisines" class = "Cuisines" input= "Chinese" type="checkbox"  value="Chinese">
               <span class="checkmark"><img src="http://del.h-cdn.co/assets/17/24/768x512/gallery-1497458825-delish-shrimp-fried-rice-1-1024.jpg"height="120" width="200">Chinese</span>
             </label>
           </td>
 
           <td>
             <label class="container">
-              <input class ="Cuisines" input= "Pizza" type="checkbox">
+              <input name ="Cuisines" class ="Cuisines" input= "Pizza" type="checkbox" value="Pizza">
               <span class="checkmark"> <img src="https://pbs.twimg.com/profile_images/1362465529/Pizza-Napolitana2_2_400x400.jpg" height="120" width="200">Pizza</span>
             </label>
           </td>
 
           <td>
             <label class="container">
-              <input class = "Cuisines" input= "Fast Food" type="checkbox">
+              <input name ="Cuisines" class = "Cuisines" input= "Fast Food" type="checkbox" value="Fast Food">
               <span class="checkmark"><img src="http://www.pizzaandgyro.com/wp-content/uploads/2013/11/Chicken-tenders-W-Fries.jpg"  height="120" width="200">Fast Food</span>
             </label>
           </td>
@@ -162,28 +59,28 @@
         <tr>
           <td>
             <label class="container">
-              <input class = "Cuisines" input= "Sushi Bars" type="checkbox">
+              <input name ="Cuisines" class = "Cuisines" input= "Sushi Bars" type="checkbox" value="Sushi Bars">
               <span class="checkmark"> <img src="https://halfoff.adspayusa.com/wp-content/uploads/2017/04/sushi_and_sashimi_for_two.0.jpg"  height="120" width="200">Sushi</span>
             </label>
           </td>
 
           <td>
             <label class="container">
-              <input class = "Cuisines" input= "Mexican" type="checkbox">
+              <input name ="Cuisines" class = "Cuisines" input= "Mexican" type="checkbox" value="Mexican">
               <span class="checkmark"><img src="https://img.grouponcdn.com/deal/iJVvZzL5wXt2WdwKgQhLgN/186347703-3642x2185/v1/c700x420.jpg"height="120" width="200">Mexican</span>
             </label>
           </td>
 
           <td>
             <label class="container">
-              <input class = "Cuisines" input= "Italian" type="checkbox">
+              <input name ="Cuisines" class = "Cuisines" input= "Italian" type="checkbox" value="Italian">
               <span class="checkmark"> <img src="http://i.ndtvimg.com/i/2016-07/pasta_625x350_51467797057.jpg" height="120" width="200">Italian</span>
             </label>
           </td>
 
           <td>
             <label class="container">
-              <input class="Cuisines" input= "Salad" type="checkbox">
+              <input name ="Cuisines" class="Cuisines" input= "Salad" type="checkbox" value="Salad">
               <span class="checkmark"><img src="http://www.simplyrecipes.com/wp-content/uploads/2016/07/2016-08-12-BLT-Salad-3-600x400.jpg"  height="120" width="200">Salad</span>
             </label>
           </td>
@@ -193,17 +90,51 @@
       <div id="myDIV">
         This is my DIV element.
         <div class="more_Cuisines">
-            {% for More_Cuisine in More_Cuisines %}
-          <input class="Cuisines" type="checkbox" /> {{More_Cuisine}} <br />
+          {% for More_Cuisine in More_Cuisines %}
+          <input name ="Cuisines" class="Cuisines" type="checkbox" value ="{{More_Cuisine}}"/> {{More_Cuisine}} <br />
           {% endfor %}
-
         </div>
       </div>
 
+      <br>
+      <h3> Select your favorite Activities: </h3>
+      <div class="Activities">
+        {% for activity in Activities %}
+        <input class="Activities" type="checkbox" value ="{{activity}}" name="Activities" /> {{activity}} <br />
+        {% endfor %}
+      </div>
+
+      <h3>Select entertainment and arts selections.</h3>
+      <div class="Entertainment">
+        {% for art in arts %}
+        <input class="Entertainment" type="checkbox" value ="{{art}}" name ="Entertainment"/> {{art}} <br />
+        {% endfor %}
+      </div>
 
       <br>
-      Next is entertainment and arts selections.
+      <h3>Any Dietary Restirctions?</h3>
+      <input type="checkbox" name="Diet" value="Kosher"> Kosher<br>
+      <input type="checkbox" name="Diet" value="Vegan" > Vegan<br>
+      <input type="checkbox" name="Diet" value="Vegetarian" > Vegetarian<br>
+      <input type="checkbox" name="Diet" value="gluten-free" > Gluten Free<br>
       <br>
+
+      <div class="invisible">
+        <label>Select Your Paradise City: </label>
+        <select name="Cities">
+          <option value="{{ city}}">{{ city}}</option>
+        </select>
+        <label><i class="fa fa-usd"></i> Avgerage Price/Night</label>
+        <select name="Price_Range">
+          <option value='{{ Price_Range}}'>{{ Price_Range}}</option>
+        </select>
+        <br>
+        <label><i class="fa fa-star"></i> Minimum Rating</label>
+        <input id="star5" name="star" type="number" value="{{ rating }}"  />
+        <label for="star5" >☆</label>
+        <input  type="number" value="{{ num_adults }}" name="Adults" >
+        <input  type="number" value="{{ num_kids}}" name="Kids" >
+      </div>
 
       <input type="submit" value="Submit">
 
@@ -212,6 +143,18 @@
     <script type="text/javascript">
       $('.Cuisines').on('change', function() {
          if($('.Cuisines:checked').length > 2) {
+             this.checked = false;
+         }
+      });
+
+      $('.Activities').on('change', function() {
+         if($('.Activities:checked').length > 2) {
+             this.checked = false;
+         }
+      });
+
+      $('.Entertainment').on('change', function() {
+         if($('.Entertainment:checked').length > 2) {
              this.checked = false;
          }
       });
@@ -226,7 +169,14 @@
       }
   </script>
 
-    <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+    <p>TADA.</p>
+    <h1> Previous form responses: </h1>
+      <p>Adults: {{ num_adults }}</p>
+      <p>Kids: {{ num_kids}} <p>
+      <p>Price_Range: {{ Price_Range}} <p>
+      <p>City: {{ city}} <p>
+      <p>Rating: {{ rating}} <p>
+
 
 
 </body>

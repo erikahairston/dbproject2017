@@ -25,12 +25,29 @@ def index(request):
 
 def yours(request):
     More_Cuisines = ["Afghan", "American (Traditional)", "Arabian" ,"Argentine",
-    "Asian Fusion","Barbeque","Beer Garden","Bistros","Brazilian","Buffets","Bulgarian", "Cafes","Cajun/Creole" ,
-    "Caribbean","Colombian","Creperies","Cuban","Delis" ,"Diners","Dinner Theater","Ethiopian","French" ,
-    "German", "Greek","Haitian","Halal","Indian" ,"Indonesian","Japanese" ,"Korean","Latin American",
-    "Mediterranean" ,"Middle Eastern","Mongolian" ,"Moroccan","Noodles","Pakistani","Pan Asian","Peruvian",
-    "Portuguese","Puerto Rican","Seafood","Senegalese","Singaporean","Soul Food","Southern","Spanish","Steakhouses",
-    "Taiwanese","Tapas/Small Plates","Tex-Mex","Thai","Turkish","Venezuelan" ,"Vietnamese","Wok"]
+        "Asian Fusion","Barbeque","Beer Garden","Bistros","Brazilian","Buffets","Bulgarian", "Cafes","Cajun/Creole" ,
+        "Caribbean","Colombian","Creperies","Cuban","Delis" ,"Diners","Dinner Theater","Ethiopian","French" ,
+        "German", "Greek","Haitian","Halal","Indian" ,"Indonesian","Japanese" ,"Korean","Latin American",
+        "Mediterranean" ,"Middle Eastern","Mongolian" ,"Moroccan","Noodles","Pakistani","Pan Asian","Peruvian",
+        "Portuguese","Puerto Rican","Seafood","Senegalese","Singaporean","Soul Food","Southern","Spanish","Steakhouses",
+        "Taiwanese","Tapas/Small Plates","Tex-Mex","Thai","Turkish","Venezuelan" ,"Vietnamese","Wok"]
+
+    Activities = ["ATV Rentals/Tours","Amusement Parks","Aquariums","Archery","Badminton" ,
+        "Baseball Fields" ,"Basketball Courts" ,"Beaches" ,"Bicycle Paths","Boating" ,
+        "Bobsledding","Bowling" ,"Bungee Jumping" ,"Carousels" ,"Climbing" ,"Free Diving" ,"Scuba Diving",
+        "Fishing" , "Go Karts" ,"Golf" ,"Hiking" ,"Horseback Riding" ,"Hot Air Balloons" ,"Jet Skis" ,
+        "Laser Tag" ,"Mini Golf" , "Paddleboarding" ,"Paintball" ,"Parasailing","Parks" ,
+        "Playgrounds" ,"Rafting/Kayaking" ,"Rock Climbing" ,"Sailing" ,"Skating Rinks" ,
+        "Skiing" ,"Skydiving" ,"Sledding" ,"Snorkeling","Surfing" ,"Swimming Pools",
+        "Water Parks" , "Ziplining" ,"Beauty & Spas","Zoos" ]
+
+    arts = ["Arcades","Art Galleries","Betting Centers","Botanical Gardens","Cabaret" ,
+        "Casinos","Cinema","Cultural Center","Festivals","Haunted Houses","Jazz & Blues",
+        "LAN Centers","Museums","Children's Museums","Music Venues" ,"Observatories" ,"Opera & Ballet" ,
+        "Performing Arts" ,"Planetarium" ,"Professional Sports Teams", "Race Tracks",
+        "Rodeo","Social Clubs" ,"Veterans Organizations","Stadiums & Arenas","Street Art" ,
+        "Supernatural Readings","Psychics","Wineries" ,"Wine Tasting Room" ,"Nightlife","Tours"]
+
     city = request.POST.get("Cities", "")
     Price_Range = request.POST.get("Price_Range", "")
     num_adults = request.POST.get("Adults", "")
@@ -41,10 +58,37 @@ def yours(request):
                 'num_adults': num_adults,
                 'num_kids': num_kids,
                 'rating': rating,
-                'More_Cuisines': More_Cuisines
+                'More_Cuisines': More_Cuisines,
+                'Activities': Activities,
+                'arts': arts
             }
     return render(request, 'polls/yours.html', context)
 
+def done(request):
+    city = request.POST.get("Cities", "")
+    Price_Range = request.POST.get("Price_Range", "")
+    num_adults = request.POST.get("Adults", "")
+    num_kids = request.POST.get("Kids", "")
+    rating = request.POST.get("star", "")
+    firstname = request.POST.get("firstname", "")
+    Cuisines = request.POST.getlist('Cuisines', [])
+    Activities = request.POST.getlist('Activities', [])
+    Entertainment = request.POST.getlist('Entertainment', [])
+    Diet = request.POST.getlist('Diet', [])
+
+    context = {'city': city,
+                'Price_Range': Price_Range,
+                'num_adults': num_adults,
+                'num_kids': num_kids,
+                'rating': rating,
+                'firstname':firstname,
+                'Cuisines':Cuisines,
+                'Activities':Activities,
+                'Entertainment':Entertainment,
+                'Diet':Diet
+
+                }
+    return render(request, 'polls/done.html', context)
 
 
 
