@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import Http404
 from django.urls import reverse
 from django.views import generic
+from django.db.models import Min, Max, Avg
 
 
 from .models import Question, Choice, Airbnb_listing, business, attribute, category
@@ -13,9 +14,21 @@ import csv
 def index(request):
     template_name = 'polls/index.html'
     latest_airbnb_list = Airbnb_listing.objects.order_by('price')[:5]
+
+    lowest_price = Airbnb_listing.objects.filter().values('price').annotate(Min('price')).order_by('price')[1]['price']
+    cheapest_airbnb = Airbnb_listing.objects.get(price=lowest_price)
+
+    max_price = Airbnb_listing.objects.filter().values('price').annotate(Max('price')).order_by('-price')[0]['price']
+    expensive_airbnb = Airbnb_listing.objects.get(price=max_price)
+
+    avg_abnb = Airbnb_listing.objects.all().aggregate(Avg('price'))
+    average_price = avg_abnb["price__avg"]
+
     #context_object_name = 'latest_airbnb_list'
     cities = Airbnb_listing.objects.order_by().values('city').distinct()
-    context = {'latest_airbnb_list': latest_airbnb_list,'cities': cities}
+    context = {'latest_airbnb_list': latest_airbnb_list,'cities': cities, 'cheapest_airbnb': cheapest_airbnb,
+        'expensive_airbnb':expensive_airbnb,
+        'average_price': average_price}
     return render(request, template_name, context)
 
 

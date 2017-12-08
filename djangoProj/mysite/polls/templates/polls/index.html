@@ -265,10 +265,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
 
-</body>
-</html>
-
-
 
 
 
@@ -288,53 +284,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   {% endif %}
 </body>
 
+<h3> Fun Facts About Airbnb Travel</h3>
+<li> US city with the cheapest Airbnb listing: {{cheapest_airbnb.city}}.  Price: ${{cheapest_airbnb.price}} </li>
+<li> US city with the most expensive Airbnb listing: {{expensive_airbnb.city}}.  Price: ${{expensive_airbnb.price}} </li>
+<li> The average price of a US city Airbnb listing is: ${{average_price}} </li>
 
 
-<script>
-function updatePriceLabels() {
-  //avoids slider overlap
-  var sliders = document.querySelectorAll(".price-slider input");
-  var val1 = parseInt(sliders[0].value);
-  var val2 = parseInt(sliders[1].value);
-  if (val1 >= val2) {
-    sliders[0].value = val2 - 3;
-    return;
-  }
-  if (val2 <= val1) {
-    sliders[1].value = val1 + 3;
-    return;
-   }
-  //adds color when a range is selected
-  if (val1 > 0 || val2 < 99) {
-    sliders[0].style.background = sliders[1].style.background = "-webkit-gradient(linear, 0 0,100% 0, color-stop(0, white), color-stop(" + (val1 / 100) + ", white),color-stop(" + (val1 / 100) + ", #f0f0f0), color-stop(" + (val2 / 100) + ", #f0f0f0), color-stop(" + (val2 / 100) + ", white))";
-  }
-    else {
-      sliders[0].style.background = sliders[1].style.background = '';
-    }
-  }
-</script>
-
-
-<div class="price-slider">
-  <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000" oninput="updatePriceLabels()">
-  <input type="range" name="price-max" id="price-max" value="800" min="0" max="1000" oninput="updatePriceLabels()">
+<br>
+<br>
 
 </div>
 
-  <input type="submit" data-inline="true" value="Submit">
-</div>
 
-
-<div class="rating_label">
-<p>How low will you go? (Min. Rating): </p>
-</div>
-<div class="rating_dropdown">
-  <select name="Min_Rating">
-    <!-- for city in yelp_city_list  -->
-    <option value="1"><!-- AribnbListing.rating1-->1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <!--{ endfor } -->
-  </select>
-</div>
+</body>
+</html>
