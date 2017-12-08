@@ -24,6 +24,13 @@ def index(request):
     #     return Airbnb_listing.objects.order_by('price')[:5]
 
 def yours(request):
+    More_Cuisines = ["Afghan", "American (Traditional)", "Arabian" ,"Argentine",
+    "Asian Fusion","Barbeque","Beer Garden","Bistros","Brazilian","Buffets","Bulgarian", "Cafes","Cajun/Creole" ,
+    "Caribbean","Colombian","Creperies","Cuban","Delis" ,"Diners","Dinner Theater","Ethiopian","French" ,
+    "German", "Greek","Haitian","Halal","Indian" ,"Indonesian","Japanese" ,"Korean","Latin American",
+    "Mediterranean" ,"Middle Eastern","Mongolian" ,"Moroccan","Noodles","Pakistani","Pan Asian","Peruvian",
+    "Portuguese","Puerto Rican","Seafood","Senegalese","Singaporean","Soul Food","Southern","Spanish","Steakhouses",
+    "Taiwanese","Tapas/Small Plates","Tex-Mex","Thai","Turkish","Venezuelan" ,"Vietnamese","Wok"]
     city = request.POST.get("Cities", "")
     Price_Range = request.POST.get("Price_Range", "")
     num_adults = request.POST.get("Adults", "")
@@ -33,7 +40,8 @@ def yours(request):
                 'Price_Range': Price_Range,
                 'num_adults': num_adults,
                 'num_kids': num_kids,
-                'rating': rating
+                'rating': rating,
+                'More_Cuisines': More_Cuisines
             }
     return render(request, 'polls/yours.html', context)
 

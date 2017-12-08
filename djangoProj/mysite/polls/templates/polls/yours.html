@@ -1,95 +1,15 @@
-<html>
-  <style>
-  /* Customize the label (the container) */
-
-table, th, td {
-      /*border: 1px solid black;*/
-}
-
-  td{
-    vertical-align: top;
-    height: 170px;
-  }
-  .container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  /* Hide the browser's default checkbox */
-  .container input {
-    position: absolute;
-    opacity: 0;
-  }
-
-  /* Create a custom checkbox */
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
-  }
-
-  /* On mouse-over, add a grey background color */
-  .container:hover input ~ .checkmark {
-    background-color: #ccc;
-  }
-
-  .seemore:hover {
-    color: pink;
-    background-color: #2196F3;
-
-  }
-
-  /* When the checkbox is checked, add a blue background */
-  .container input:checked ~ .checkmark {
-    background-color: #2196F3;
-  }
-
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-
-  /* Show the checkmark when checked */
-  .container input:checked ~ .checkmark:after {
-    display: block;
-  }
-
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid blue;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-
-  #myDIV {
-    width: 100%;
-    padding: 50px 0;
-    text-align: center;
-    background-color: lightblue;
-    margin-top: 20px;
-}
-
-  </style>
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'polls/yourstyle.css' %}" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<html>
   <script>
 
   var limit = 3;
@@ -108,6 +28,95 @@ table, th, td {
   <p>Price_Range: {{ Price_Range}} <p>
   <p>City: {{ city}} <p>
   <p>Rating: {{ rating}} <p>
+
+    <!-- Page content -->
+    <div class="w3-content" style="max-width:1532px;">
+
+      <div class="w3-container w3-margin-top" id="rooms">
+        <h3>Our Motto</h3>
+        <p>Using the world's data to better inform your travel desires.</p>
+      </div>
+
+      <div class="w3-row-padding">
+        <div class="w3-col m3">
+          <label><i class="fa fa-calendar-o"></i> Check In</label>
+          <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY">
+        </div>
+        <div class="w3-col m3">
+          <label><i class="fa fa-calendar-o"></i> Check Out</label>
+          <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY">
+        </div>
+        <div class="w3-col m2">
+          <label><i class="fa fa-male"></i> Adults</label>
+          <input class="w3-input w3-border" type="number" placeholder="1">
+        </div>
+        <div class="w3-col m2">
+          <label><i class="fa fa-child"></i> Kids</label>
+          <input class="w3-input w3-border" type="number" placeholder="0">
+        </div>
+        <div class="w3-col m2">
+          <label><i class="fa fa-search"></i> Search</label>
+          <button class="w3-button w3-block w3-black">Search</button>
+        </div>
+      </div>
+
+      <div class="w3-row-padding w3-padding-16">
+        <div class="w3-third w3-margin-bottom">
+          <img src="/w3images/room_single.jpg" alt="Norway" style="width:100%">
+          <div class="w3-container w3-white">
+            <h3>Single Room</h3>
+            <h6 class="w3-opacity">From $99</h6>
+            <p>Single bed</p>
+            <p>15m<sup>2</sup></p>
+            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
+            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <img src="/w3images/room_double.jpg" alt="Norway" style="width:100%">
+          <div class="w3-container w3-white">
+            <h3>Double Room</h3>
+            <h6 class="w3-opacity">From $149</h6>
+            <p>Queen-size bed</p>
+            <p>25m<sup>2</sup></p>
+            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i></p>
+            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <img src="/w3images/room_deluxe.jpg" alt="Norway" style="width:100%">
+          <div class="w3-container w3-white">
+            <h3>Deluxe Room</h3>
+            <h6 class="w3-opacity">From $199</h6>
+            <p>King-size bed</p>
+            <p>40m<sup>2</sup></p>
+            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
+            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-row-padding" id="about">
+        <div class="w3-col l4 m7">
+          <h3>About</h3>
+          <h6>Our hotel is one of a kind. It is truely amazing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h6>
+        <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
+        </div>
+        <div class="w3-col l8 m5">
+          <div id="googleMap" style="width:100%;height:400px;" class="w3-grayscale"></div>
+        </div>
+      </div>
+
+      <div class="w3-row w3-large w3-center" style="margin:32px 0">
+        <div class="w3-third"><i class="fa fa-map-marker w3-text-red"></i> 423 Some adr, Chicago, US</div>
+        <div class="w3-third"><i class="fa fa-phone w3-text-red"></i> Phone: +00 151515</div>
+        <div class="w3-third"><i class="fa fa-envelope w3-text-red"></i> Email: mail@mail.com</div>
+      </div>
+
+      <div class="w3-panel w3-indigo w3-leftbar w3-padding-32">
+        <h6><i class="fa fa-info w3-deep-orange w3-padding w3-margin-right"></i> On demand, we can offer playstation, babycall, children care, dog equipment, etc.</h6>
+      </div>
+
 
 
 <h2> Let's Get to Know Each other a bit better </h2>
@@ -183,7 +192,12 @@ table, th, td {
       <a onclick="myFunction()" class="seemore"> Don't see what you like? Click Me</a>
       <div id="myDIV">
         This is my DIV element.
-        will put the rest of the food choices in little checkboxes here
+        <div class="more_Cuisines">
+            {% for More_Cuisine in More_Cuisines %}
+          <input class="Cuisines" type="checkbox" /> {{More_Cuisine}} <br />
+          {% endfor %}
+
+        </div>
       </div>
 
 
@@ -195,27 +209,22 @@ table, th, td {
 
     </form>
 
+    <script type="text/javascript">
+      $('.Cuisines').on('change', function() {
+         if($('.Cuisines:checked').length > 2) {
+             this.checked = false;
+         }
+      });
 
-
-
-<script type="text/javascript">
-
-$('.Cuisines').on('change', function() {
-   if($('.Cuisines:checked').length > 2) {
-       this.checked = false;
-   }
-});
-
-function myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-</script>
+      function myFunction() {
+          var x = document.getElementById("myDIV");
+          if (x.style.display === "none") {
+              x.style.display = "block";
+          } else {
+              x.style.display = "none";
+          }
+      }
+  </script>
 
     <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
 
