@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
   <link rel="stylesheet" type="text/css" href="{% static 'polls/yourstyle.css' %}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
@@ -13,19 +15,21 @@
     <!-- Page content -->
     <div class="w3-content" style="max-width:1532px;">
 
-      <div class="w3-container w3-margin-top">
-        <h2>Let's Get to Know Each other a bit better</h2>
-        <p>Using the world's data to better inform your travel desires.</p>
+      <div class="w3-container">
+        <h1>Let's Get to Know Each other a bit better</h1>
       </div>
 
     <form action="/polls/yours/done/" method="POST">
       {% csrf_token %}
-      <h3>  I'm TravelBud, What's your name?</h3>
-      <input class="w3-input w3-border" type="text" name="firstname" value="Mickey">
+      <div class="w3-container">
+      <center><h5>  I'm TravelBud, What's your name?</h5></center>
+    </div>
+      <center><input class=" w3-border" type="text" name="firstname" required size=50 ></center>
       <br>
-      Nice to meet you. I like long walks on the beach and ice cream. What do you like? <br>
+      <p>Nice to meet you. I like long walks on the beach and ice cream. What do you like? <p>
       <h3> Select your top 2 favorite Cuisines: </h3>
-      <table style="width:70%">
+      <center>
+      <table style="width:70%" class="Cuisines_Table">
         <tr>
           <td>
             <label class="container">
@@ -86,7 +90,11 @@
           </td>
         </tr>
       </table>
-      <a onclick="myFunction()" class="seemore"> Don't see what you like? Click Me</a>
+    </center>
+
+      <br>
+      <center> <button type="button" onclick="myFunction()" class="seemore w3-button w3-black w3-mobile" align="center"> Don't see what you like?</button></center>
+
       <div id="myDIV">
         This is my DIV element.
         <div class="more_Cuisines">
@@ -97,20 +105,39 @@
       </div>
 
       <br>
-      <h3> Select your favorite Activities: </h3>
-      <div class="Activities">
-        {% for activity in Activities %}
-        <input class="Activities" type="checkbox" value ="{{activity}}" name="Activities" /> {{activity}} <br />
-        {% endfor %}
-      </div>
+    </br>
 
-      <h3>Select entertainment and arts selections.</h3>
-      <div class="Entertainment">
-        {% for art in arts %}
-        <input class="Entertainment" type="checkbox" value ="{{art}}" name ="Entertainment"/> {{art}} <br />
-        {% endfor %}
-      </div>
+      <table class="act_ent_Table" width="100%">
+        <tr>
+        <td>
+        <center>
+          <h3> Select your favorite Activities: </h3>
+        <div class="more_Cuisines">
+          {% for activity in Activities %}
+          <label class="act_label">
+          <input class="Activities" type="checkbox" value ="{{activity}}" name="Activities" > {{activity}} <br />
+          <span class="checkmark"> </span>
+          </label>
+          {% endfor %}
+        </div>
+      </center>
+        </td>
 
+        <td>
+          <center>
+        <h3>Select entertainment and arts selections.</h3>
+        <div class="more_Cuisines">
+          {% for art in arts %}
+          <label class="ent_label">
+          <input class="Entertainment" type="checkbox" value ="{{art}}" name ="Entertainment"/> {{art}} <br />
+          <span class="checkmark"> </span>
+          </label>
+          {% endfor %}
+        </div>
+      </center>
+      </td>
+      </tr>
+    </table>
       <br>
       <h3>Any Dietary Restirctions?</h3>
       <input type="checkbox" name="Diet" value="Kosher"> Kosher<br>
@@ -135,9 +162,7 @@
         <input  type="number" value="{{ num_adults }}" name="Adults" >
         <input  type="number" value="{{ num_kids}}" name="Kids" >
       </div>
-
-      <input type="submit" value="Submit">
-
+      <input type="submit" value="Submit" class="w3-button w3-indigo">
     </form>
 
     <script type="text/javascript">
@@ -168,16 +193,5 @@
           }
       }
   </script>
-
-    <p>TADA.</p>
-    <h1> Previous form responses: </h1>
-      <p>Adults: {{ num_adults }}</p>
-      <p>Kids: {{ num_kids}} <p>
-      <p>Price_Range: {{ Price_Range}} <p>
-      <p>City: {{ city}} <p>
-      <p>Rating: {{ rating}} <p>
-
-
-
 </body>
 </html>

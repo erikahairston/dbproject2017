@@ -1,14 +1,38 @@
 /* Customize the label (the container) */
 
-table, th, td {
+body {
+  background-color: #f1f1f1;
+}
+
+.Cuisines_Table {
     border: 1px solid black;
     background-color: #E25068;
+    color: white;
+}
+
+th, td {
+  border: 1px solid black;
+  color: white
+}
+
+.act_ent_Table {
+  background-color: teal;
+
+}
+
+center div {
+  text-align: left
 }
 
 td{
   vertical-align: top;
   height: 180px;
   width: 120px;
+}
+
+.empty {
+  background: white;
+  border: None
 }
 .container {
   color: white;
@@ -89,8 +113,15 @@ td{
   margin-top: 20px;
   display: none;
 }
-.more_Cuisines { border:2px solid #ccc; width:300px; height: 100px; overflow-y: scroll; }
+.more_Cuisines { border:2px solid #ccc; width:300px; height: 250px; overflow-y: scroll; }
 
 .invisible {
   display: none;
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+
+.name_border {
+  border-color: #E25068;
+  border:2px
 }
