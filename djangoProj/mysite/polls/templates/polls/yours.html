@@ -96,7 +96,7 @@
       <center> <button type="button" onclick="myFunction()" class="seemore w3-button w3-black w3-mobile" align="center"> Don't see what you like?</button></center>
 
       <div id="myDIV">
-        This is my DIV element.
+        <h3> More Cuisine Options: </h3>
         <div class="more_Cuisines">
           {% for More_Cuisine in More_Cuisines %}
           <input name ="Cuisines" class="Cuisines" type="checkbox" value ="{{More_Cuisine}}"/> {{More_Cuisine}} <br />
@@ -139,7 +139,7 @@
       </tr>
     </table>
       <br>
-      <h3>Any Dietary Restirctions?</h3>
+      <h3>Any Dietary Restrictions?</h3>
       <input type="checkbox" name="Diet" value="Kosher"> Kosher<br>
       <input type="checkbox" name="Diet" value="Vegan" > Vegan<br>
       <input type="checkbox" name="Diet" value="Vegetarian" > Vegetarian<br>

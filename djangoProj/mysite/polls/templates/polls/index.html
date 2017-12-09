@@ -18,10 +18,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <!-- Navigation Bar -->
 <div class="w3-bar w3-white w3-large">
   <a href="#" class="w3-bar-item w3-button w3-indigo w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Travel Bud</a>
-  <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Rooms</a>
+  <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Search Cities</a>
   <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Book Now</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contributors</a>
 </div>
 <!-- Header -->
 <header class="w3-display-container w3-content" style="max-width:1500px;">
@@ -81,7 +80,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
           <input class="w3-input w3-border" type="number" value="0" name="Kids" min="0" max="6">
           </div>
         </div>
-        <button class="w3-button w3-dark-grey" type="submit" value="Search"><i class="fa fa-search w3-margin-right"></i> Search availability</button>
+        <button class="w3-button w3-dark-grey" type="submit" value="Search"><i class="fa fa-search w3-margin-right"></i> Up Up and Away </button>
       </form>
     </div>
   </div>
@@ -89,90 +88,69 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 <!-- Page content -->
 <div class="w3-content" style="max-width:1532px;">
-
+  <center>
   <div class="w3-container w3-margin-top" id="rooms">
     <h3>Our Motto</h3>
-    <p>Using the world's data to better inform your travel desires.</p>
+    <p>Using the world's data to better inform your travel desires. Give us a city. We'll tell you about it's Airbnb data.</p>
   </div>
 
+<form action="/polls/#rooms" method="POST">
+  {% csrf_token %}
+<table>
   <div class="w3-row-padding">
-    <div class="w3-col m3">
-      <label><i class="fa fa-calendar-o"></i> Check In</label>
-      <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY">
-    </div>
-    <div class="w3-col m3">
-      <label><i class="fa fa-calendar-o"></i> Check Out</label>
-      <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY">
-    </div>
-    <div class="w3-col m2">
-      <label><i class="fa fa-male"></i> Adults</label>
-      <input class="w3-input w3-border" type="number" placeholder="1">
-    </div>
-    <div class="w3-col m2">
-      <label><i class="fa fa-child"></i> Kids</label>
-      <input class="w3-input w3-border" type="number" placeholder="0">
-    </div>
-    <div class="w3-col m2">
+  <tr>
+    <td>
+      <label><i class="fa fa-building-o" aria-hidden="true"></i> City</label>
+      <div class="dropdown w3-input w3-border">
+        <select name="Cities">
+        {% for city1 in cities %}
+          <option value="{{ city1.city}}">{{ city1.city}}</option>
+        {% endfor %}
+        </select>
+      </div>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
       <label><i class="fa fa-search"></i> Search</label>
       <button class="w3-button w3-block w3-black">Search</button>
-    </div>
+    </td>
   </div>
+  </tr>
+</table>
+</form>
+  </center>
 
-  <div class="w3-row-padding w3-padding-16">
-    <div class="w3-third w3-margin-bottom">
-      <img src="/w3images/room_single.jpg" alt="Norway" style="width:100%">
-      <div class="w3-container w3-white">
-        <h3>Single Room</h3>
-        <h6 class="w3-opacity">From $99</h6>
-        <p>Single bed</p>
-        <p>15m<sup>2</sup></p>
-        <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
-      </div>
+    <div class="w3-container w3-padding-32 w3-black  w3-card" style="margin:32px 0;">
+      {% if city %}
+      <h3> Fun Facts About Airbnb's in {{city}}</h3>
+      <li> {{city}}'s most expensive Airbnb is ${{most_here}} </li>
+      <li>{{city}}'s least expensive Airbnb is ${{least_here}} </li>
+      <li> {{city}}'s aveage price for an Airbnb is ${{avg_here}} </li>
+      {% endif %}
+      <hr>
+      <h3> Other Fun Facts About Airbnb Travel</h3>
+      <li> US city with the cheapest Airbnb listing: {{cheapest_airbnb.city}}.  Price: ${{cheapest_airbnb.price}} </li>
+      <li> US city with the most expensive Airbnb listing: {{expensive_airbnb.city}}.  Price: ${{expensive_airbnb.price}} </li>
+      <li> The average price of a US city Airbnb listing is: ${{average_price}} </li>
+      <li> The most common word used in listing titles is: {{most_common_word}} </li>
     </div>
-    <div class="w3-third w3-margin-bottom">
-      <img src="/w3images/room_double.jpg" alt="Norway" style="width:100%">
-      <div class="w3-container w3-white">
-        <h3>Double Room</h3>
-        <h6 class="w3-opacity">From $149</h6>
-        <p>Queen-size bed</p>
-        <p>25m<sup>2</sup></p>
-        <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i></p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
-      </div>
-    </div>
-    <div class="w3-third w3-margin-bottom">
-      <img src="/w3images/room_deluxe.jpg" alt="Norway" style="width:100%">
-      <div class="w3-container w3-white">
-        <h3>Deluxe Room</h3>
-        <h6 class="w3-opacity">From $199</h6>
-        <p>King-size bed</p>
-        <p>40m<sup>2</sup></p>
-        <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
-      </div>
-    </div>
-  </div>
 
   <div class="w3-row-padding" id="about">
-    <div class="w3-col l4 m7">
-      <h3>About</h3>
-      <h6>Our hotel is one of a kind. It is truely amazing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h6>
-    <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
-    </div>
-    <div class="w3-col l8 m5">
-      <div id="googleMap" style="width:100%;height:400px;" class="w3-grayscale"></div>
-    </div>
-  </div>
+    <div class=" l4 m7">
+      <h3>About Us</h3>
+      <h6> Currently, when people search for Airbnb’s, they only have other users’ ratings and reviews of the home to go off of.  If they are not familiar with the area, then it’s hard to gauge how enjoyable the overall experience of staying at the place will be.  We seek to provide an added dimension to Airbnb search/browsing by incorporating Yelp data.  In deciding where to stay, it might be useful to know whether there are restaurants, businesses, and activities that you like nearby.
 
-  <div class="w3-row w3-large w3-center" style="margin:32px 0">
-    <div class="w3-third"><i class="fa fa-map-marker w3-text-red"></i> 423 Some adr, Chicago, US</div>
-    <div class="w3-third"><i class="fa fa-phone w3-text-red"></i> Phone: +00 151515</div>
-    <div class="w3-third"><i class="fa fa-envelope w3-text-red"></i> Email: mail@mail.com</div>
-  </div>
+Given a desired city and set of other parameters (price, # people, rating) , we query the Airbnb database for listings that those requirements.  We then poll the user for his/her interests (up to two each of cuisines, activities, and entertainments).  We then aggregate the Yelp businesses within 3 miles of each Airbnb listing to provide a score (currently this score simply consists of the total number of stars that those Yelp businesses have in total, so quantity can overpower quality, but this score could be enhanced in the future).  Finally, we return the five Airbnb’s with the top scores, and for of those each we provide the top-rated nearby Yelp business in each category.
 
-  <div class="w3-panel w3-indigo w3-leftbar w3-padding-32">
-    <h6><i class="fa fa-info w3-deep-orange w3-padding w3-margin-right"></i> On demand, we can offer playstation, babycall, children care, dog equipment, etc.</h6>
+As part of our efforts to provide more information about Airbnb’s and Yelp businesses, we’ve also added on a number of fun facts about the listings, which can be filtered by location.
+
+</h6>
+    </div>
   </div>
 
   <div class="w3-container">
@@ -219,28 +197,40 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     </div>
   </div>
 
-  <div class="w3-container w3-padding-32 w3-black w3-opacity w3-card w3-hover-opacity-off" style="margin:32px 0;">
-    <h2>Get the best offers first!</h2>
-    <p>Join our newsletter.</p>
-    <label>E-mail</label>
-    <input class="w3-input w3-border" type="text" placeholder="Your Email address">
-    <button type="button" class="w3-button w3-indigo w3-margin-top">Subscribe</button>
+  <div class="w3-panel w3-indigo w3-leftbar w3-padding-32">
+    <h6><i class="fa fa-info w3-deep-orange w3-padding w3-margin-right"></i> Delirious Computer Science Majors who are now seniors ready to graduate and rock! </h6>
   </div>
 
-  <div class="w3-container" id="contact">
-    <h2>Contact</h2>
-    <p>If you have any questions, do not hesitate to ask them.</p>
-    <i class="fa fa-map-marker w3-text-red" style="width:30px"></i> Chicago, US<br>
-    <i class="fa fa-phone w3-text-red" style="width:30px"></i> Phone: +00 151515<br>
-    <i class="fa fa-envelope w3-text-red" style="width:30px"> </i> Email: mail@mail.com<br>
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required name="Email"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p>
-      <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
-    </form>
-  </div>
 
+    <div class="w3-row-padding w3-padding-16" id="contact">
+      <div class="w3-third w3-margin-bottom">
+        <img src="http://www.joeanhalt.com/wp-content/uploads/2014/09/airbnb-logo.jpg" alt="Airbnb.com" style="width:100%">
+        <div class="w3-container w3-white">
+          <h3>Airbnb Listing Data</h3>
+          <a href="http://tomslee.net/airbnb-data" class="w3-opacity">From tomslee.net</a>
+          <p>Book a stay through Airbnb's Website </p>
+          <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
+        </div>
+      </div>
+      <div class="w3-third w3-margin-bottom">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Yale_University_logo.svg/2000px-Yale_University_logo.svg.png" alt="Yalies" style="width:100%">
+        <div class="w3-container w3-white">
+          <h3>Two Computer Science Yalies</h3>
+          <h6 class="w3-opacity">From Td and Silliman</h6>
+          <p> Erika Hairston and Vincent Huang</p>
+          <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
+        </div>
+      </div>
+      <div class="w3-third w3-margin-bottom">
+        <img src="https://getkya.com/wp-content/uploads/2015/12/yelp-logo-vector.jpg" alt="Airbnb.com" style="width:100%">
+        <div class="w3-container w3-white">
+          <h3>Yelp Businesses Data</h3>
+          <a href="https://www.yelp.com/dataset/challenge" class="w3-opacity">From Yelp Data challenge</a>
+          <p>Learn about bussinesses near you on Yelp's Website</p>
+          <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i></p>
+        </div>
+      </div>
+    </div>
 <!-- End page content -->
 </div>
 
@@ -255,36 +245,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <p>Powered by <a href="http://sce.cs.yale.edu/" target="_blank" class="w3-hover-text-green">Fan's of Stan</a></p>
 </footer>
-
-  <img src="http://www.joeanhalt.com/wp-content/uploads/2014/09/airbnb-logo.jpg" alt="Airbnb.com" width="244" height="142">
-  <img src="https://getkya.com/wp-content/uploads/2015/12/yelp-logo-vector.jpg" alt="Airbnb.com" width="250" height="122">
-
-  <hr>
-  <p> Our best listings in Boston: </p>
-  {% if latest_airbnb_list %}
-      <ul>
-      {% for airbnb in latest_airbnb_list %}
-          <li>{{ airbnb.name }}</li>
-      {% endfor %}
-      </ul>
-  {% else %}
-      <p>No polls are available.</p>
-  {% endif %}
-</body>
-
-<h3> Fun Facts About Airbnb Travel</h3>
-<li> US city with the cheapest Airbnb listing: {{cheapest_airbnb.city}}.  Price: ${{cheapest_airbnb.price}} </li>
-<li> US city with the most expensive Airbnb listing: {{expensive_airbnb.city}}.  Price: ${{expensive_airbnb.price}} </li>
-<li> The average price of a US city Airbnb listing is: ${{average_price}} </li>
-
-
-<br>
-<br>
-
-</div>
-
-
 </body>
 </html>

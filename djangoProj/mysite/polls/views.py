@@ -18,6 +18,22 @@ def index(request):
     template_name = 'polls/index.html'
     latest_airbnb_list = Airbnb_listing.objects.order_by('price')[:5]
 
+    city = request.POST.get("Cities", "")
+    most_here = ""
+    least_here = ""
+    avg_here = ""
+    if city != "":
+        most_here = Airbnb_listing.objects.filter(city__exact=city).values('price').annotate(Max('price')).order_by('-price')[0]['price']
+        #print ('most_here', most_here)
+
+        least_here = Airbnb_listing.objects.filter(city__exact=city).values('price').annotate(Min('price')).order_by('price')[1]['price']
+        #print ('least_here', least_here)
+
+        avg_here = Airbnb_listing.objects.filter(city__exact=city).aggregate(Avg('price'))
+        avg_here = avg_here["price__avg"]
+        #print ('avg_here', avg_here)
+
+
     lowest_price = Airbnb_listing.objects.filter().values('price').annotate(Min('price')).order_by('price')[1]['price']
     cheapest_airbnb = Airbnb_listing.objects.get(price=lowest_price)
 
@@ -27,10 +43,33 @@ def index(request):
     avg_abnb = Airbnb_listing.objects.all().aggregate(Avg('price'))
     average_price = avg_abnb["price__avg"]
 
+    dictionary = {}
+    count = 1;
+    name_query_set = Airbnb_listing.objects.values('name')
+    most_common_word = " "
+    for index, item in enumerate(name_query_set):
+        for j in name_query_set[index]['name'].split(" "):
+            if((j.isalpha()) & (len(j)>2)):
+                if((j in dictionary) & (j.isalpha()) & (len(j)>2)):
+                    dictionary[j] = dictionary[j] + 1
+                    if(count < dictionary[j]):
+                        count = dictionary[j]
+                        most_common_word = j
+                else:
+                    dictionary[j] = 1
+
+    print ("below is most common")
+    print (most_common_word)
+
     cities = Airbnb_listing.objects.order_by().values('city').distinct()
     context = {'latest_airbnb_list': latest_airbnb_list,'cities': cities, 'cheapest_airbnb': cheapest_airbnb,
         'expensive_airbnb':expensive_airbnb,
-        'average_price': average_price}
+        'average_price': average_price,
+        'most_common_word': most_common_word,
+        'most_here': most_here,
+        'city': city,
+        'least_here': least_here,
+        'avg_here': avg_here}
     return render(request, template_name, context)
 
 def yours(request):
@@ -225,30 +264,3 @@ def done(request):
                 'Categories':cats
                 }
     return render(request, 'polls/done.html', context)
-
-# class DetailView(generic.DetailView):
-#     model = Question
-#     template_name = 'polls/detail.html'
-
-
-# class ResultsView(generic.DetailView):
-#     model = Question
-#     template_name = 'polls/results.html'
-
-# def vote(request, question_id):
-#     question = get_object_or_404(Question, pk=question_id)
-#     try:
-#         selected_choice = question.choice_set.get(pk=request.POST['choice'])
-#     except (KeyError, Choice.DoesNotExist):
-#         # Redisplay the question voting form.
-#         return render(request, 'polls/detail.html', {
-#             'question': question,
-#             'error_message': "You didn't select a choice.",
-#         })
-#     else:
-#         selected_choice.votes += 1
-#         selected_choice.save()
-#         # Always return an HttpResponseRedirect after successfully dealing
-#         # with POST data. This prevents data from being posted twice if a
-#         # user hits the Back button.
-#     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
