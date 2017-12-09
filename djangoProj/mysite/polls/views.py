@@ -24,14 +24,11 @@ def index(request):
     avg_here = ""
     if city != "":
         most_here = Airbnb_listing.objects.filter(city__exact=city).values('price').annotate(Max('price')).order_by('-price')[0]['price']
-        #print ('most_here', most_here)
 
         least_here = Airbnb_listing.objects.filter(city__exact=city).values('price').annotate(Min('price')).order_by('price')[1]['price']
-        #print ('least_here', least_here)
 
         avg_here = Airbnb_listing.objects.filter(city__exact=city).aggregate(Avg('price'))
-        avg_here = avg_here["price__avg"]
-        #print ('avg_here', avg_here)
+        avg_here = round(avg_here["price__avg"], 2)
 
 
     lowest_price = Airbnb_listing.objects.filter().values('price').annotate(Min('price')).order_by('price')[1]['price']
@@ -41,7 +38,7 @@ def index(request):
     expensive_airbnb = Airbnb_listing.objects.get(price=max_price)
 
     avg_abnb = Airbnb_listing.objects.all().aggregate(Avg('price'))
-    average_price = avg_abnb["price__avg"]
+    average_price = round(avg_abnb["price__avg"], 2)
 
     dictionary = {}
     count = 1;
@@ -171,12 +168,17 @@ def done(request):
         max_i = len(busi_loc) - 1
         i = int(floor(max_i / 2))
         while i >= 0 and i <= len(busi_loc) - 1:
-            if busi_loc[i].latitude < a.latitude - 0.1:
+            print (a_ind, len(airbnbs), min_i, max_i, i, len(busi_loc))
+            if min_i > max_i:
+                break
+            elif busi_loc[i].latitude < a.latitude - 0.1:
+                print ('<', busi_loc[i].latitude, a.latitude)
                 min_i = i + 1
                 i = int(floor((min_i + max_i) / 2))
                 if i > len(busi_loc):
                     break
             elif busi_loc[i].latitude > a.latitude + 0.1:
+                print ('>', busi_loc[i].latitude, a.latitude)
                 max_i = i - 1
                 i = int(floor((min_i + max_i) / 1))
                 if i < 0:
