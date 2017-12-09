@@ -1,92 +1,132 @@
-<!-- hello world
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <html>
+  <title>Travel Buddy --Db Project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+p {margin: 0}
+.indigo-border { border-style: solid; border-width: 10px; border-color: #E0526A; background-color: white; }
+body, html {
+  background-image: url("http://www.salafi-islam.com/wp-content/uploads/2016/11/maxresdefault-1.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.title { width: 100%; background-color: #E0526A; color: white; padding: 2px; }
+</style>
+<body class="w3-light-grey bg">
+  <h2 class="title">Here are the top 5 Airbnb's for you!</h2>
 
-<h1> Previous form responses: </h1>
-  <p>Adults: {{ num_adults }}</p>
-  <p>Kids: {{ num_kids}} <p>
-  <p>Price_Range: {{ Price_Range}} <p>
-    <li> value=1 = $0 - $50 </li>
-    <li> value=2 = $51 - $80 </li>
-    <li> value=3 = $81 - $100 </li>
-    <li> value=4 = $100 Up </li>
-  <p>City: {{ city}} <p>
-  <p>Rating: {{ rating}} <p>
+  <div class="w3-row-padding w3-padding-16">
+    <div class="w3-third w3-margin-bottom">
+      <div class="w3-container indigo-border">
+        <h3>1st Best Airbnb</h3>
+        <p>Name: {{ TopAirbnbs.0.name }}</p>
+        <p>Rating: {{ TopAirbnbs.0.overall_satisfaction }}</p>
+        <p>Price: {{ TopAirbnbs.0.price }}</p>
+        <p>Type: {{ TopAirbnbs.0.room_type }}</p>
+        <p>Bedroom: {{ TopAirbnbs.0.bedrooms }}</p>
+        <p>Bathroom: {{ TopAirbnbs.0.bathrooms }}</p>
+        <p>If you do stay, considering visiting:</p>
+        <ul>
+          <li><p>Best {{ Categories.0 }}: {{ BestYelps.0.0.name }}, Rating: {{ BestYelps.0.0.rating }}</p></li>
+          <li><p>Best {{ Categories.1 }}: {{ BestYelps.0.1.name }}, Rating: {{ BestYelps.0.1.rating }}</p></li>
+          <li><p>Best {{ Categories.2 }}: {{ BestYelps.0.2.name }}, Rating: {{ BestYelps.0.2.rating }}</p></li>
+          <li><p>Best {{ Categories.3 }}: {{ BestYelps.0.3.name }}, Rating: {{ BestYelps.0.3.rating }}</p></li>
+          <li><p>Best {{ Categories.4 }}: {{ BestYelps.0.4.name }}, Rating: {{ BestYelps.0.4.rating }}</p></li>
+          <li><p>Best {{ Categories.5 }}: {{ BestYelps.0.5.name }}, Rating: {{ BestYelps.0.5.rating }}</p></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <div class="w3-container indigo-border">
+        <h3>2nd Best Airbnb</h3>
+        <p>Name: {{ TopAirbnbs.1.name }}</p>
+        <p>Rating: {{ TopAirbnbs.1.overall_satisfaction }}</p>
+        <p>Price: {{ TopAirbnbs.1.price }}</p>
+        <p>Type: {{ TopAirbnbs.1.room_type }}</p>
+        <p>Bedroom: {{ TopAirbnbs.1.bedrooms }}</p>
+        <p>Bathroom: {{ TopAirbnbs.1.bathrooms }}</p>
+        <p>If you do stay, considering visiting:</p>
+        <ul>
+          <li><p>Best {{ Categories.0 }}: {{ BestYelps.1.0.name }}, Rating: {{ BestYelps.1.0.rating }}</p></li>
+          <li><p>Best {{ Categories.1 }}: {{ BestYelps.1.1.name }}, Rating: {{ BestYelps.1.1.rating }}</p></li>
+          <li><p>Best {{ Categories.2 }}: {{ BestYelps.1.2.name }}, Rating: {{ BestYelps.1.2.rating }}</p></li>
+          <li><p>Best {{ Categories.3 }}: {{ BestYelps.1.3.name }}, Rating: {{ BestYelps.1.3.rating }}</p></li>
+          <li><p>Best {{ Categories.4 }}: {{ BestYelps.1.4.name }}, Rating: {{ BestYelps.1.4.rating }}</p></li>
+          <li><p>Best {{ Categories.5 }}: {{ BestYelps.1.5.name }}, Rating: {{ BestYelps.1.5.rating }}</p></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <div class="w3-container indigo-border">
+        <h3>3rd Best Airbnb</h3>
+        <p>Name: {{ TopAirbnbs.3.name }}</p>
+        <p>Rating: {{ TopAirbnbs.3.overall_satisfaction }}</p>
+        <p>Price: {{ TopAirbnbs.3.price }}</p>
+        <p>Type: {{ TopAirbnbs.3.room_type }}</p>
+        <p>Bedroom: {{ TopAirbnbs.3.bedrooms }}</p>
+        <p>Bathroom: {{ TopAirbnbs.3.bathrooms }}</p>
+        <p>If you do stay, considering visiting:</p>
+        <ul>
+          <li><p>Best {{ Categories.0 }}: {{ BestYelps.3.0.name }}, Rating: {{ BestYelps.3.0.rating }}</p></li>
+          <li><p>Best {{ Categories.1 }}: {{ BestYelps.3.1.name }}, Rating: {{ BestYelps.3.1.rating }}</p></li>
+          <li><p>Best {{ Categories.2 }}: {{ BestYelps.3.2.name }}, Rating: {{ BestYelps.3.2.rating }}</p></li>
+          <li><p>Best {{ Categories.3 }}: {{ BestYelps.3.3.name }}, Rating: {{ BestYelps.3.3.rating }}</p></li>
+          <li><p>Best {{ Categories.4 }}: {{ BestYelps.3.4.name }}, Rating: {{ BestYelps.3.4.rating }}</p></li>
+          <li><p>Best {{ Categories.5 }}: {{ BestYelps.3.5.name }}, Rating: {{ BestYelps.3.5.rating }}</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-Hello {{firstname}}
-
-<h2> Personal (2nd) form responses: </h2>
-  <p>Firstname: {{ firstname }}</p>
-  <p>Cuisine Choices: {{ Cuisines}} <p>
-  <p>Activities Selected: {{ Activities}} <p>
-  <p>Entertainment/Art: {{ Entertainment}} <p>
-  <p> Dietary Needs?: {{ Diet}} <p>
- -->
-
-<h2>Here are the top 5 Airbnb's for you!</h2>
-
-<ul>
-
-  <li>
-    <p>Name: {{ TopAirbnbs.0.name }}, Rating: {{ TopAirbnbs.0.overall_satisfaction }}</p>
-    <p>If you do stay, considering visiting:</p>
-    <ul>
-      <p>Best {{ Categories.0 }}: {{ BestYelps.0.0.name }}, Rating: {{ BestYelps.0.0.rating }}</p>
-      <p>Best {{ Categories.1 }}: {{ BestYelps.0.1.name }}, Rating: {{ BestYelps.0.1.rating }}</p>
-      <p>Best {{ Categories.2 }}: {{ BestYelps.0.2.name }}, Rating: {{ BestYelps.0.2.rating }}</p>
-      <p>Best {{ Categories.3 }}: {{ BestYelps.0.3.name }}, Rating: {{ BestYelps.0.3.rating }}</p>
-      <p>Best {{ Categories.4 }}: {{ BestYelps.0.4.name }}, Rating: {{ BestYelps.0.4.rating }}</p>
-      <p>Best {{ Categories.5 }}: {{ BestYelps.0.5.name }}, Rating: {{ BestYelps.0.5.rating }}</p>
-    </ul>
-  </li>
-
-  <li>
-    <p>Name: {{ TopAirbnbs.1.name }}, Rating: {{ TopAirbnbs.1.overall_satisfaction }}</p>
-    <p>If you do stay, considering visiting:</p>
-    <ul>
-      <p>Best {{ Categories.0 }}: {{ BestYelps.1.0.name }}, Rating: {{ BestYelps.1.0.rating }}</p>
-      <p>Best {{ Categories.1 }}: {{ BestYelps.1.1.name }}, Rating: {{ BestYelps.1.1.rating }}</p>
-      <p>Best {{ Categories.2 }}: {{ BestYelps.1.2.name }}, Rating: {{ BestYelps.1.2.rating }}</p>
-      <p>Best {{ Categories.3 }}: {{ BestYelps.1.3.name }}, Rating: {{ BestYelps.1.3.rating }}</p>
-      <p>Best {{ Categories.4 }}: {{ BestYelps.1.4.name }}, Rating: {{ BestYelps.1.4.rating }}</p>
-      <p>Best {{ Categories.5 }}: {{ BestYelps.1.5.name }}, Rating: {{ BestYelps.1.5.rating }}</p>
-    </ul>
-  </li>
-
-  <li>
-    <p>Name: {{ TopAirbnbs.2.name }}, Rating: {{ TopAirbnbs.2.overall_satisfaction }}</p>
-    <p>If you do stay, considering visiting:</p>
-    <ul>
-      <p>Best {{ Categories.0 }}: {{ BestYelps.2.0.name }}, Rating: {{ BestYelps.2.0.rating }}</p>
-      <p>Best {{ Categories.1 }}: {{ BestYelps.2.1.name }}, Rating: {{ BestYelps.2.1.rating }}</p>
-      <p>Best {{ Categories.2 }}: {{ BestYelps.2.2.name }}, Rating: {{ BestYelps.2.2.rating }}</p>
-      <p>Best {{ Categories.3 }}: {{ BestYelps.2.3.name }}, Rating: {{ BestYelps.2.3.rating }}</p>
-      <p>Best {{ Categories.4 }}: {{ BestYelps.2.4.name }}, Rating: {{ BestYelps.2.4.rating }}</p>
-      <p>Best {{ Categories.5 }}: {{ BestYelps.2.5.name }}, Rating: {{ BestYelps.2.5.rating }}</p>
-    </ul>
-  </li>
-
-  <li>
-    <p>Name: {{ TopAirbnbs.3.name }}, Rating: {{ TopAirbnbs.3.overall_satisfaction }}</p>
-    <p>If you do stay, considering visiting:</p>
-    <ul>
-      <p>Best {{ Categories.0 }}: {{ BestYelps.3.0.name }}, Rating: {{ BestYelps.3.0.rating }}</p>
-      <p>Best {{ Categories.1 }}: {{ BestYelps.3.1.name }}, Rating: {{ BestYelps.3.1.rating }}</p>
-      <p>Best {{ Categories.2 }}: {{ BestYelps.3.2.name }}, Rating: {{ BestYelps.3.2.rating }}</p>
-      <p>Best {{ Categories.3 }}: {{ BestYelps.3.3.name }}, Rating: {{ BestYelps.3.3.rating }}</p>
-      <p>Best {{ Categories.4 }}: {{ BestYelps.3.4.name }}, Rating: {{ BestYelps.3.4.rating }}</p>
-      <p>Best {{ Categories.5 }}: {{ BestYelps.3.5.name }}, Rating: {{ BestYelps.3.5.rating }}</p>
-    </ul>
-  </li>
-
-  <li>
-    <p>Name: {{ TopAirbnbs.4.name }}, Rating: {{ TopAirbnbs.4.overall_satisfaction }}</p>
-    <p>If you do stay, considering visiting:</p>
-    <ul>
-      <p>Best {{ Categories.0 }}: {{ BestYelps.4.0.name }}, Rating: {{ BestYelps.4.0.rating }}</p>
-      <p>Best {{ Categories.1 }}: {{ BestYelps.4.1.name }}, Rating: {{ BestYelps.4.1.rating }}</p>
-      <p>Best {{ Categories.2 }}: {{ BestYelps.4.2.name }}, Rating: {{ BestYelps.4.2.rating }}</p>
-      <p>Best {{ Categories.3 }}: {{ BestYelps.4.3.name }}, Rating: {{ BestYelps.4.3.rating }}</p>
-      <p>Best {{ Categories.4 }}: {{ BestYelps.4.4.name }}, Rating: {{ BestYelps.4.4.rating }}</p>
-      <p>Best {{ Categories.5 }}: {{ BestYelps.4.5.name }}, Rating: {{ BestYelps.4.5.rating }}</p>
-    </ul>
-  </li>
-</ul>
+  <div class="w3-row-padding w3-padding-16">
+    <div class="w3-third w3-margin-bottom">
+      <div class="w3-container indigo-border">
+        <h3>4th Best Airbnb</h3>
+        <p>Name: {{ TopAirbnbs.3.name }}</p>
+        <p>Rating: {{ TopAirbnbs.3.overall_satisfaction }}</p>
+        <p>Price: {{ TopAirbnbs.3.price }}</p>
+        <p>Type: {{ TopAirbnbs.3.room_type }}</p>
+        <p>Bedroom: {{ TopAirbnbs.3.bedrooms }}</p>
+        <p>Bathroom: {{ TopAirbnbs.3.bathrooms }}</p>
+        <p>If you do stay, considering visiting:</p>
+        <ul>
+          <li><p>Best {{ Categories.0 }}: {{ BestYelps.3.0.name }}, Rating: {{ BestYelps.3.0.rating }}</p></li>
+          <li><p>Best {{ Categories.1 }}: {{ BestYelps.3.1.name }}, Rating: {{ BestYelps.3.1.rating }}</p></li>
+          <li><p>Best {{ Categories.2 }}: {{ BestYelps.3.2.name }}, Rating: {{ BestYelps.3.2.rating }}</p></li>
+          <li><p>Best {{ Categories.3 }}: {{ BestYelps.3.3.name }}, Rating: {{ BestYelps.3.3.rating }}</p></li>
+          <li><p>Best {{ Categories.4 }}: {{ BestYelps.3.4.name }}, Rating: {{ BestYelps.3.4.rating }}</p></li>
+          <li><p>Best {{ Categories.5 }}: {{ BestYelps.3.5.name }}, Rating: {{ BestYelps.3.5.rating }}</p></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w3-third w3-margin-bottom">
+      <div class="w3-container indigo-border">
+        <h3>5th Best Airbnb</h3>
+        <p>Name: {{ TopAirbnbs.4.name }}</p>
+        <p>Rating: {{ TopAirbnbs.4.overall_satisfaction }}</p>
+        <p>Price: {{ TopAirbnbs.4.price }}</p>
+        <p>Type: {{ TopAirbnbs.4.room_type }}</p>
+        <p>Bedroom: {{ TopAirbnbs.4.bedrooms }}</p>
+        <p>Bathroom: {{ TopAirbnbs.4.bathrooms }}</p>
+        <p>If you do stay, considering visiting:</p>
+        <ul>
+          <li><p>Best {{ Categories.0 }}: {{ BestYelps.4.0.name }}, Rating: {{ BestYelps.4.0.rating }}</p></li>
+          <li><p>Best {{ Categories.1 }}: {{ BestYelps.4.1.name }}, Rating: {{ BestYelps.4.1.rating }}</p></li>
+          <li><p>Best {{ Categories.2 }}: {{ BestYelps.4.2.name }}, Rating: {{ BestYelps.4.2.rating }}</p></li>
+          <li><p>Best {{ Categories.3 }}: {{ BestYelps.4.3.name }}, Rating: {{ BestYelps.4.3.rating }}</p></li>
+          <li><p>Best {{ Categories.4 }}: {{ BestYelps.4.4.name }}, Rating: {{ BestYelps.4.4.rating }}</p></li>
+          <li><p>Best {{ Categories.5 }}: {{ BestYelps.4.5.name }}, Rating: {{ BestYelps.4.5.rating }}</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
