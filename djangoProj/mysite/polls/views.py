@@ -55,9 +55,6 @@ def index(request):
                 else:
                     dictionary[j] = 1
 
-    print ("below is most common")
-    print (most_common_word)
-
     cities = Airbnb_listing.objects.order_by().values('city').distinct()
     context = {'latest_airbnb_list': latest_airbnb_list,'cities': cities, 'cheapest_airbnb': cheapest_airbnb,
         'expensive_airbnb':expensive_airbnb,
@@ -168,17 +165,14 @@ def done(request):
         max_i = len(busi_loc) - 1
         i = int(floor(max_i / 2))
         while i >= 0 and i <= len(busi_loc) - 1:
-            print (a_ind, len(airbnbs), min_i, max_i, i, len(busi_loc))
             if min_i > max_i:
                 break
             elif busi_loc[i].latitude < a.latitude - 0.1:
-                print ('<', busi_loc[i].latitude, a.latitude)
                 min_i = i + 1
                 i = int(floor((min_i + max_i) / 2))
                 if i > len(busi_loc):
                     break
             elif busi_loc[i].latitude > a.latitude + 0.1:
-                print ('>', busi_loc[i].latitude, a.latitude)
                 max_i = i - 1
                 i = int(floor((min_i + max_i) / 1))
                 if i < 0:
